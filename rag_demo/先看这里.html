@@ -1,0 +1,86 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>任务2 · 基础RAG · 新手入口</title><style>body{font-family:system-ui,"Microsoft YaHei",sans-serif;max-width:940px;margin:40px auto;padding:0 22px;line-height:1.85;color:#243044;background:#f6f8fc}main{background:white;padding:32px;border-radius:16px}h1,h2{line-height:1.4}h2{margin-top:2em;border-bottom:1px solid #dbe3ef;padding-bottom:10px}pre{background:#eef2f8;padding:16px;overflow-x:auto;border-radius:8px;line-height:1.6}code{font-family:Consolas,monospace}table{width:100%;border-collapse:collapse}th,td{border:1px solid #d8dfeb;padding:10px;text-align:left;vertical-align:top}th{background:#e9eff9}a{color:#2855b6}nav{margin-bottom:24px;padding:16px;background:#eaf0ff;border-radius:12px}blockquote{border-left:4px solid #5476b8;margin-left:0;padding-left:16px}</style></head><body><main><nav><strong>第一次做项目，从这里开始</strong><br><a href="docs/新手操作与分工说明.html">完整新手指南</a> · <a href="docs/课堂演示与答辩.html">演示讲稿和答辩</a> · <a href="docs/验证记录.html">已验证与待验证</a></nav><h1>任务2：基础RAG课堂演示项目</h1>
+<p>依据作业 Excel 的「分组汇报要求」，为「程序演示工程师」选择 <strong>A：基础 RAG 系统</strong>。</p>
+<p><strong>先读 <a href="docs/%E6%96%B0%E6%89%8B%E6%93%8D%E4%BD%9C%E4%B8%8E%E5%88%86%E5%B7%A5%E8%AF%B4%E6%98%8E.html">新手操作与分工说明</a></strong>，再按下面步骤运行。不需要 API 密钥，不需要训练模型。</p>
+<h2>这个项目完成什么</h2>
+<p>读取自带的虚构图书馆资料，用真实 BGE 模型生成向量，存入嵌入式 Chroma，检索后交给真实 Qwen 小模型生成中文回答。</p>
+<ul>
+<li>段落切分 vs 带 overlap 的切分；另加相同块大小的无重叠对照。</li>
+<li>同一问题、完全相同的检索上下文，比较 temperature=0 和 1.0，多次采样。</li>
+<li>Notebook 展示检索来源和真实回答，导出 JSON、CSV 和可离线打开的 HTML 对比报告。</li>
+</ul>
+<p>原课程代码依赖论文PDF、API密钥和部分教师电脑路径，本项目替换这些输入依赖，保留课堂的检索增强生成逻辑。未加入选题B/C的额外功能。</p>
+<h2>先安装，再运行</h2>
+<p>使用64位 Python 3.11或3.12；首次需联网下载依赖和约1.1GB模型文件，建议16GB内存和至少8GB可用空间。</p>
+<p><strong>Windows</strong>：先安装Python，双击 <code>setup_windows.bat</code>，在项目目录打开PowerShell：</p>
+<pre><code class="language-powershell">.\.venv\Scripts\python.exe run_demo.py --prepare
+.\.venv\Scripts\python.exe run_demo.py --smoke
+.\.venv\Scripts\python.exe run_demo.py --experiments
+</code></pre>
+<p>然后双击 <code>start_notebook_windows.bat</code>，打开 <code>task2_rag_demo.ipynb</code>。</p>
+<p><strong>macOS/Linux</strong>：</p>
+<pre><code class="language-bash">bash setup_unix.sh
+./.venv/bin/python run_demo.py --prepare
+./.venv/bin/python run_demo.py --smoke
+./.venv/bin/python run_demo.py --experiments
+bash start_notebook_unix.sh
+</code></pre>
+<p>快速预演可使用 <code>--experiments --quick</code>；正式报告使用完整实验。先课前运行并检查答案，再在现场运行一次问答，切勿上台才下载模型。</p>
+<h2>文件导航</h2>
+<table>
+<thead>
+<tr>
+  <th>文件</th>
+  <th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>task2_rag_demo.ipynb</code></td>
+  <td>面向新手的逐格运行和现场展示</td>
+</tr>
+<tr>
+  <td><code>rag_core.py</code></td>
+  <td>文档加载、三种切分、模型、Chroma检索、生成</td>
+</tr>
+<tr>
+  <td><code>experiments.py</code></td>
+  <td>公平对照及真实报告导出</td>
+</tr>
+<tr>
+  <td><code>run_demo.py</code></td>
+  <td>环境检查、模型下载、真实自检、命令行实验</td>
+</tr>
+<tr>
+  <td><code>data/knowledge.txt</code></td>
+  <td>虚构教学资料，不是真实校规</td>
+</tr>
+<tr>
+  <td><code>data/questions.json</code></td>
+  <td>4类实验问题与人工核对参考点，不把参考答案送给生成器</td>
+</tr>
+<tr>
+  <td><code>docs/</code></td>
+  <td>安装、分工、讲稿、答辩和实验记录模板</td>
+</tr>
+<tr>
+  <td><code>models/</code></td>
+  <td>首次下载后存放模型，压缩包不包含权重</td>
+</tr>
+<tr>
+  <td><code>results/</code></td>
+  <td>实际运行后生成报告；交付包没有假模型答案</td>
+</tr>
+<tr>
+  <td><code>tests/</code></td>
+  <td>数据切分、公平参数、报告导出和真实向量库的检查</td>
+</tr>
+</tbody>
+</table>
+<h2>验证边界</h2>
+<p>本项目已做的检查和未通过的检查详见 <a href="docs/%E9%AA%8C%E8%AF%81%E8%AE%B0%E5%BD%95.html">验证记录</a>。当前开发云端拒绝模型下载站访问（HTTP 403），因此<strong>尚未完成两个预训练模型的实际问答和效果验证</strong>。不能把依赖安装、自动测试通过当成课堂演示已就绪。必须在可以下载模型的电脑上完成 <code>--prepare</code>、<code>--smoke</code> 和完整实验。</p>
+<p>模型下载失败会明确停止，没有固定答案后备。相似度不代表正确率，overlap不保证更好，temperature=0也不能消除幻觉。回答达到长度上限会提醒；需要时把双方的 <code>max_new_tokens</code> 一起提高后重做公平比较。</p>
+<h2>开发检查</h2>
+<pre><code class="language-bash">python -m unittest discover -s tests -v
+</code></pre>
+<p>未安装依赖时，纯逻辑测试可运行，Chroma集成检查会明确跳过；安装依赖后应执行全部检查。模型端到端检查单独使用 <code>--smoke</code>。</p>
+</main></body></html>

@@ -1,0 +1,9 @@
+.venv/
+models/*
+!models/README.md
+.cache/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+results/*
+!results/README.md

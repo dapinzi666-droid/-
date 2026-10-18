@@ -1,0 +1,75 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>实验记录模板</title><style>body{font-family:system-ui,"Microsoft YaHei",sans-serif;max-width:940px;margin:40px auto;padding:0 22px;line-height:1.85;color:#243044;background:#f6f8fc}main{background:white;padding:32px;border-radius:16px}h1,h2{line-height:1.4}h2{margin-top:2em;border-bottom:1px solid #dbe3ef;padding-bottom:10px}pre{background:#eef2f8;padding:16px;overflow-x:auto;border-radius:8px;line-height:1.6}code{font-family:Consolas,monospace}table{width:100%;border-collapse:collapse}th,td{border:1px solid #d8dfeb;padding:10px;text-align:left;vertical-align:top}th{background:#e9eff9}a{color:#2855b6}nav{margin-bottom:24px;padding:16px;background:#eaf0ff;border-radius:12px}blockquote{border-left:4px solid #5476b8;margin-left:0;padding-left:16px}</style></head><body><main><nav><a href="../先看这里.html">返回项目首页</a></nav><h1>真实实验记录（运行后再填写）</h1>
+<p>本表没有预填任何模型结果。先完成 <code>--prepare</code>、<code>--smoke</code>，再运行完整 <code>--experiments</code>。</p>
+<ul>
+<li>演示电脑/内存：待填写</li>
+<li>Python与依赖版本：待填写（<code>--doctor</code>）</li>
+<li>模型版本：待填写（<code>models/manifest.json</code>中的revision）</li>
+<li>真实实验目录：待填写</li>
+<li>报告文件：<code>report.html</code>、<code>summary.csv</code>、<code>records.json</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+  <th>问题</th>
+  <th>资料中应该找到的依据</th>
+  <th>段落切分实际结果</th>
+  <th>overlap实际结果</th>
+  <th>人工判断与遗漏</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>本科生借书</td>
+  <td>最多8册，每册30天</td>
+  <td>待运行</td>
+  <td>待运行</td>
+  <td>待核对</td>
+</tr>
+<tr>
+  <td>本科生续借</td>
+  <td>到期前7天内申请、最多1次、增加15天；被预约或有逾期不能续借</td>
+  <td>待运行</td>
+  <td>待运行</td>
+  <td>待核对</td>
+</tr>
+<tr>
+  <td>两类预约</td>
+  <td>研讨室15分钟未签到取消；图书到馆后48小时内领取</td>
+  <td>待运行</td>
+  <td>待运行</td>
+  <td>待核对</td>
+</tr>
+<tr>
+  <td>馆长私人手机号</td>
+  <td>资料没有提供，不应猜测</td>
+  <td>待运行</td>
+  <td>待运行</td>
+  <td>待核对</td>
+</tr>
+</tbody>
+</table>
+<p>上表的依据是人工根据虚构资料整理的核对点，不是模型已经生成的答案。关键词碰巧出现，不等于语义完整正确。</p>
+<h2>切分对比</h2>
+<ul>
+<li>参数：定长240字符、重叠80字符、Top-K=2、温度=0。自然段大小不固定。</li>
+<li>比较paragraph与overlap：记录召回内容、是否漏条件、答案正确性、上下文字符数。</li>
+<li>比较fixed与overlap：在相同定长窗口下观察重叠；仍需考虑重复信息及不同上下文预算，不能宣称只有单一变量影响。</li>
+<li>本组实际观察：待填写。</li>
+<li>没有明显差异也如实记录，分析资料、问题和切分边界。不把四个问题推广为通用性能结论。</li>
+</ul>
+<h2>温度对比</h2>
+<ul>
+<li>每题的温度组使用完全相同的messages；以 <code>context_sha256</code> 核对。</li>
+<li>温度0使用贪心解码，种子42、43各一次；温度1使用采样，种子42、43、44各一次。</li>
+<li>实际相同/不同、正确/遗漏/编造情况：待填写。</li>
+<li>不把温度0当作正确性保证，不强行要求温度1一定不同。</li>
+</ul>
+<h2>现场准备</h2>
+<ul>
+<li>[ ] 最终演示电脑能完整运行，答案已人工核对。</li>
+<li>[ ] 课前加载好模型与索引，1—1.5分钟预演成功。</li>
+<li>[ ] HTML报告、Notebook真实输出已保存。</li>
+<li>[ ] 备用录屏已复制到U盘，现场故障时才使用。</li>
+<li>[ ] 已把真实结果和局限交给理论讲解、总结负责人。</li>
+</ul>
+</main></body></html>

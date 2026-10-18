@@ -1,0 +1,8 @@
+# PyTorch is installed separately by the setup scripts (CPU build on Windows/Linux).
+numpy==1.26.4
+transformers==4.48.3
+huggingface-hub==0.28.1
+chromadb==1.0.20
+posthog==3.11.0
+jupyterlab==4.3.5
+pypdf==5.3.0
