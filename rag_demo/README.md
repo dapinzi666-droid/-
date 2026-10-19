@@ -4,6 +4,8 @@
 
 **先读 [新手操作与分工说明](docs/新手操作与分工说明.md)**，再按下面步骤运行。不需要 API 密钥，不需要训练模型。
 
+**新增本机安装与备份入口（Windows10/11 x64）**：优先阅读 [本机安装与保留](docs/本机安装与保留.md)。解压后双击 `install_local_windows.bat`，脚本会在你的电脑上下载匹配的软件、保留依赖和模型、真实自检后打开Notebook。以后用 `run_local_windows.bat` 启动，用 `backup_local_windows.bat` 保留完整副本，恢复用 `restore_local_windows.bat`。这些操作需要你在自己的电脑执行；轻量下载ZIP并不包含预先下载的Python安装器、模型或依赖轮子。
+
 ## 这个项目完成什么
 
 读取自带的虚构图书馆资料，用真实 BGE 模型生成向量，存入嵌入式 Chroma，检索后交给真实 Qwen 小模型生成中文回答。

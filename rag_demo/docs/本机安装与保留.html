@@ -1,0 +1,135 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>本机安装与保留</title><style>body{font-family:system-ui,"Microsoft YaHei",sans-serif;max-width:940px;margin:36px auto;padding:0 22px;line-height:1.85;color:#243044;background:#f6f8fc}main{background:white;padding:30px;border-radius:16px}h1,h2{line-height:1.4}h2{margin-top:2em;border-bottom:1px solid #dbe3ef;padding-bottom:10px}pre{background:#eef2f8;padding:16px;overflow-x:auto;border-radius:8px;line-height:1.6}code{font-family:Consolas,monospace}table{width:100%;border-collapse:collapse}th,td{border:1px solid #d8dfeb;padding:10px;text-align:left;vertical-align:top}th{background:#e9eff9}a{color:#2855b6}nav{margin-bottom:24px;padding:16px;background:#eaf0ff;border-radius:12px}</style></head><body><main><nav><a href="../先看这里.html">返回项目首页</a></nav><h1>在你自己的电脑安装、运行，并保留本地版本</h1>
+<p>这份说明对应原来的选题A基础RAG项目。不是后面截图里的LoRA微调作业。</p>
+<h2>先说清楚：谁在操作哪台电脑</h2>
+<p>网页版助手能准备项目文件、安装脚本和下载链接，当前没有控制你电脑的工具。你需要在自己的电脑下载、解压并双击入口；脚本才会真正把软件、依赖和模型下载到本机。不能把云端检查当作你的电脑已安装成功。</p>
+<p>本入口先按 <strong>Windows 10/11 x64</strong> 编写；不支持32位Windows或ARM64。建议16GB内存，8GB可尝试；至少8GB可用空间，创建完整备份建议预留12GB以上。macOS/Linux继续使用原说明，不要运行这些Windows入口。</p>
+<h2>你现在只需要做什么</h2>
+<ol>
+<li>下载本机安装版ZIP，解压出整个 <code>rag_demo</code> 文件夹，放到固定位置，例如 <code>D:\rag_demo</code>。没有D盘时选择你能写入的文件夹。</li>
+<li>双击 <strong><code>install_local_windows.bat</code></strong>。第一次保持联网，不要关闭运行窗口。</li>
+<li>如果电脑已有匹配的64位Python3.11/3.12，脚本会复用它；没有时会下载官方安装器并打开窗口，由你点击 <strong>Install Now</strong>。安装完成后关闭安装窗口，脚本继续。</li>
+<li>等待依赖下载、离线依赖重建检查、模型下载和真实问答自检。只有全部成功，才打开Notebook。</li>
+<li>以后双击 <strong><code>run_local_windows.bat</code></strong> 即可再次打开项目。正常情况下不重新下载模型或依赖。</li>
+<li>要保存一份可恢复的本地副本，关闭Notebook后双击 <strong><code>backup_local_windows.bat</code></strong>。它会在项目文件夹的上一层生成ZIP，可再复制到U盘或移动硬盘。</li>
+</ol>
+<p>脚本不需要你填写API密钥，也不训练模型。首次联网下载通常明显慢于以后启动，时间取决于网络和电脑。模型下载失败时会停止并保留已下载内容，不会用固定答案替代。</p>
+<h2>使用哪些版本</h2>
+<table>
+<thead>
+<tr>
+  <th>软件或组件</th>
+  <th>版本/来源</th>
+  <th>由谁下载</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Python（电脑原来没有时）</td>
+  <td>官方Windows x64 Python 3.12.10安装器</td>
+  <td>安装入口从python.org下载，并验证Windows数字签名及PSF发布者</td>
+</tr>
+<tr>
+  <td>已有Python3.11</td>
+  <td>可复用；另保留3.11.9官方安装器供对应小版本重建</td>
+  <td>本机脚本</td>
+</tr>
+<tr>
+  <td>PyTorch</td>
+  <td>CPU版2.6.0+cpu，无需显卡</td>
+  <td>官方PyTorch软件源</td>
+</tr>
+<tr>
+  <td>Transformers</td>
+  <td>4.48.3</td>
+  <td>PyPI官方源</td>
+</tr>
+<tr>
+  <td>Chroma</td>
+  <td>1.0.20</td>
+  <td>PyPI官方源</td>
+</tr>
+<tr>
+  <td>JupyterLab</td>
+  <td>4.3.5</td>
+  <td>PyPI官方源</td>
+</tr>
+<tr>
+  <td>中文Embedding模型</td>
+  <td>BAAI/bge-small-zh-v1.5</td>
+  <td>官方Hugging Face模型仓库</td>
+</tr>
+<tr>
+  <td>中文生成模型</td>
+  <td>Qwen/Qwen2.5-0.5B-Instruct</td>
+  <td>官方Hugging Face模型仓库</td>
+</tr>
+</tbody>
+</table>
+<p>这两个Python安装器版本是为了匹配项目和可获取的Windows完整安装包，<strong>不表示当前最新安全版本</strong>。若已有兼容环境，优先复用，不要求卸载或替换系统Python。</p>
+<p>如需手动下载Python3.12安装器，官方地址：</p>
+<p><a href="https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe">https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe</a></p>
+<p>如果官方安装窗口显示Modify/Repair而不是首次安装，请先关闭并反馈当前情况，避免误操作已有安装。</p>
+<h2>本地会保留哪些文件</h2>
+<table>
+<thead>
+<tr>
+  <th>位置</th>
+  <th>保存内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>software/</code></td>
+  <td>已验证签名的官方Python安装器、来源及SHA256记录</td>
+</tr>
+<tr>
+  <td><code>.venv/</code></td>
+  <td>这台电脑当前使用的Python依赖环境</td>
+</tr>
+<tr>
+  <td><code>wheelhouse/</code></td>
+  <td>匹配这台Windows和Python小版本的依赖wheel、全部精确版本和SHA256锁</td>
+</tr>
+<tr>
+  <td><code>models/</code></td>
+  <td>两个真实模型、版本及文件SHA256</td>
+</tr>
+<tr>
+  <td><code>results/</code></td>
+  <td>你实际运行生成的问答和对照报告</td>
+</tr>
+<tr>
+  <td><code>local_installation.json</code></td>
+  <td>本机安装阶段与实际自检状态；失败时不会保留旧的成功标记</td>
+</tr>
+<tr>
+  <td><code>local_python_minor.txt</code></td>
+  <td>离线恢复时选择匹配的Python小版本</td>
+</tr>
+</tbody>
+</table>
+<p>保留整个项目文件夹即可保留当前本地版本。第一次安装后不要随意移动文件夹或只复制Notebook，因为虚拟环境会记录路径。</p>
+<h2>怎样制作、恢复完整备份</h2>
+<h3>制作</h3>
+<p>先完成本机安装与真实自检，再双击 <code>backup_local_windows.bat</code>。备份前会重新检查当前安装器、wheel与模型，而不是仅相信以前的成功记录。</p>
+<p>ZIP包含代码、资料、模型、依赖安装文件、官方Python安装器和实际结果，并带逐文件SHA256清单。它<strong>不直接复制 <code>.venv</code></strong>，因为虚拟环境通常不能直接迁移；恢复时用保留的安装材料重建。</p>
+<h3>恢复</h3>
+<ol>
+<li>把完整备份ZIP解压到一个新的、固定的文件夹。</li>
+<li>双击 <strong><code>restore_local_windows.bat</code></strong>。</li>
+<li>它使用备份中的安装器、匹配Python小版本的wheel及本地模型重建，不从软件源或模型站重新下载。</li>
+<li>依赖离线重建和真实问答自检成功后才进入Notebook。</li>
+</ol>
+<p>恢复目标仍应是相同的Windows x64/Python小版本，不保证跨平台。Windows本身仍需具备可用的证书信任链和微软运行库；如果离线无法验证安装器签名，应先补齐受信任系统环境，不要跳过校验。</p>
+<p>轻量项目下载ZIP只包含代码和安装入口，<strong>不是已经装有模型和依赖的离线备份</strong>。只有你在本机成功准备后生成的完整备份，才包含那些大文件。</p>
+<h2>失败时怎么办</h2>
+<ul>
+<li>保留窗口，截图最后报错并说明正在执行哪一步。已下载内容不会因为失败自动删除。</li>
+<li>Python官网、PyPI、PyTorch软件源或Hugging Face连接失败，需要先解决对应站点的访问问题；不能把反复重试当作成功。</li>
+<li>如果出现<code>DLL load failed</code>、<code>WinError 126</code>等，应检查微软Visual C++ x64运行库。官方安装入口：<a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">https://aka.ms/vs/17/release/vc_redist.x64.exe</a>。不要把这条故障说明当作已经诊断了你的电脑。</li>
+<li>如果看到“还未准备模型”，先完成安装入口；如果回答达到长度上限，按Notebook说明调整上限并重新比较。</li>
+</ul>
+<h2>怎样算项目真的完成</h2>
+<p>安装入口会进行一次真实问答自检，<strong>它还不能替代整份课堂实验</strong>。进入Notebook后，还要运行完整切分/温度实验，核对答案、保存真实结果，并录制备用演示视频。</p>
+<p>当前开发环境的Python官网和模型站访问仍返回403；Windows脚本没有在你的电脑上实测，不能宣称已经替你安装完成。代码、缓存校验与备份逻辑的检查结果见验证记录。</p>
+</main></body></html>

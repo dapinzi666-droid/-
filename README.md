@@ -1,13 +1,17 @@
-# 任务2：基础 RAG 演示项目
+# 任务2：基础 RAG 本机演示项目
 
-本仓库保存课程任务2、选题A的生成代码与新手说明。
+## 先下载本机安装版
 
-## 下载
+[点击下载本机安装与备份版 ZIP](downloads/rag_demo_local_windows.zip?raw=true)
 
-[点击下载已打包项目](downloads/rag_demo.zip?raw=true)
+解压后先打开 `rag_demo/先看这里.html`，Windows10/11 x64首次双击 `install_local_windows.bat`，以后双击 `run_local_windows.bat`，保留完整本机副本用 `backup_local_windows.bat`。
 
-也可在仓库首页选择 **Code → Download ZIP**。解压后打开 `rag_demo/先看这里.html`。
+[本机安装和保留说明](rag_demo/docs/本机安装与保留.md)
 
-模型权重、Python环境和真实模型实验结果不包含在压缩包中。按新手指南安装依赖、下载模型，并在演示电脑运行自检和完整实验。当前云端预训练模型下载受403限制，真实问答尚未验证；已完成20项代码/数据库检查及Notebook服务验证。
+这个轻量ZIP包含代码与安装入口，不预置Python安装器、模型或依赖。第一次由用户在自己的电脑下载，已下载文件保留在项目目录；模型与依赖自检通过后才能运行演示。网页版助手不能直接控制用户电脑。
 
-本项目使用虚构图书馆资料，不代表真实校规。上传内容仅为生成的代码、说明、测试、虚构资料和项目压缩包。
+已通过30项代码/数据/真实Chroma检查。Windows实机安装、两个预训练模型及完整问答实验尚未验证，不能宣称已经替用户安装成功。开发云端访问Python官网和模型站仍403。
+
+[保留的原版项目 ZIP](downloads/rag_demo_original.zip?raw=true)
+
+全部源代码位于 `rag_demo/`。虚构图书馆制度仅供教学，不代表真实学校规定。

@@ -13,4 +13,6 @@ if not exist ".venv\Scripts\python.exe" (
   exit /b 1
 )
 ".venv\Scripts\python.exe" -m jupyterlab task2_rag_demo.ipynb --ip=127.0.0.1
-if errorlevel 1 pause
+set "RAG_NOTEBOOK_STATUS=%errorlevel%"
+if not "%RAG_NOTEBOOK_STATUS%"=="0" pause
+exit /b %RAG_NOTEBOOK_STATUS%

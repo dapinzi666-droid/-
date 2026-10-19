@@ -5,5 +5,12 @@ models/*
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+software/*
+!software/README.md
+wheelhouse/*
+!wheelhouse/README.md
+local_installation.json
+local_python_minor.txt
+rag_demo_local_backup-*.zip
 results/*
 !results/README.md
